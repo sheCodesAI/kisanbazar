@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join as Farmer — KisanBazaar</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+    <div class="auth-page">
+        <div class="auth-visual" style="background:linear-gradient(160deg,#1B5E20 0%,#2E7D32 50%,#FF6F00 100%);">
+            <a href="../index.html"
+                style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;margin-bottom:40px;">🌿
+                KisanBazaar</a>
+            <h2>Sell Direct.<br />Earn More.</h2>
+            <p>Join 2,400+ farmers who are selling directly and earning 40% more. No commission agents, full control of
+                your prices.</p>
+            <div class="auth-dots">
+                <div class="auth-dot">💰 40% More Income</div>
+                <div class="auth-dot">📈 Real-time Analytics</div>
+            </div>
+            <div
+                style="margin-top:32px;background:rgba(255,255,255,0.1);border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.15);">
+                <p style="color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:8px;">SUCCESS STORY</p>
+                <p style="color:#fff;font-size:15px;line-height:1.7;font-style:italic;">"I now earn ₹24,000 more per
+                    month by cutting out the middlemen. KisanBazaar changed my life!"</p>
+                <p style="color:rgba(255,255,255,0.7);font-size:13px;margin-top:8px;">— Ramesh Kumar, Nashik (3 years on
+                    KisanBazaar)</p>
+            </div>
+        </div>
+        <div class="auth-form-panel">
+            <div style="max-width:420px; width:100%;">
+                <h3 style="font-size:28px; margin-bottom:8px;">Farmer Registration</h3>
+                <p class="text-muted" style="margin-bottom:28px;">Join free. Start selling in minutes.</p>
+
+                <!-- Step indicator -->
+                <div style="display:flex;gap:8px;margin-bottom:24px;" id="step-dots">
+                    <div id="dot1" style="flex:1;height:4px;border-radius:100px;background:var(--primary);"></div>
+                    <div id="dot2" style="flex:1;height:4px;border-radius:100px;background:var(--border);"></div>
+                    <div id="dot3" style="flex:1;height:4px;border-radius:100px;background:var(--border);"></div>
+                </div>
+                <p id="step-label" style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Step 1 of 3:
+                    Personal Details</p>
+
+                <form id="farmer-form" onsubmit="doFarmerRegister(event)">
+                    <!-- Step 1 -->
+                    <div id="step1">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                            <div class="form-group">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="fname" placeholder="Ramesh" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="lname" placeholder="Kumar" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number *</label>
+                            <input type="tel" class="form-control" id="mobile" placeholder="9876543210" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="ramesh@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Aadhar Number *</label>
+                            <input type="text" class="form-control" id="aadhar" placeholder="1234 5678 9012"
+                                maxlength="14" required />
+                        </div>
+                    </div>
+
+                    <!-- Step 2 (hidden) -->
+                    <div id="step2" style="display:none;">
+                        <div class="form-group">
+                            <label class="form-label">Village / Town *</label>
+                            <input type="text" class="form-control" id="village" placeholder="Igatpuri" required />
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                            <div class="form-group">
+                                <label class="form-label">District *</label>
+                                <input type="text" class="form-control" id="district" placeholder="Nashik" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">State *</label>
+                                <select class="form-control" id="state">
+                                    <option>Maharashtra</option>
+                                    <option>Gujarat</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Karnataka</option>
+                                    <option>Andhra Pradesh</option>
+                                    <option>Punjab</option>
+                                    <option>Rajasthan</option>
+                                    <option>Bihar</option>
+                                    <option>Uttar Pradesh</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Land Area (in acres)</label>
+                            <input type="number" class="form-control" id="land" placeholder="2.5" min="0.1"
+                                step="0.1" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Primary Crops *</label>
+                            <input type="text" class="form-control" id="crops" placeholder="Tomatoes, Onions, Wheat"
+                                required />
+                        </div>
+                    </div>
+
+                    <!-- Step 3 (hidden) -->
+                    <div id="step3" style="display:none;">
+                        <div class="form-group">
+                            <label class="form-label">Create Password *</label>
+                            <div style="position:relative;">
+                                <input type="password" class="form-control" id="pwd" placeholder="Min 8 characters"
+                                    required minlength="8" style="padding-right:48px;" />
+                                <button type="button" onclick="togglePwd('pwd')"
+                                    style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;">👁</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirm Password *</label>
+                            <input type="password" class="form-control" id="cpwd" placeholder="Re-enter password"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Bank Account Number (for payouts)</label>
+                            <input type="text" class="form-control" id="bank" placeholder="Your bank account number" />
+                        </div>
+                        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;">
+                            <input type="checkbox" id="agree" required style="width:16px;height:16px;margin-top:4px;" />
+                            <label for="agree" style="font-size:13px;color:var(--text-muted);">I agree to the <a
+                                    href="#" style="color:var(--primary);">Terms</a> and <a href="#"
+                                    style="color:var(--primary);">Privacy Policy</a></label>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:12px;margin-top:8px;">
+                        <button type="button" id="prev-btn" onclick="prevStep()" style="display:none;"
+                            class="btn btn-outline btn-lg">← Back</button>
+                        <button type="button" id="next-btn" onclick="nextStep()" class="btn btn-primary btn-lg"
+                            style="flex:1;">Next →</button>
+                        <button type="submit" id="submit-btn" style="display:none; flex:1;"
+                            class="btn btn-primary btn-lg">🌾 Create Farmer Account</button>
+                    </div>
+                    <p style="text-align:center;margin-top:20px;color:var(--text-muted);font-size:14px;">
+                        Already a member? <a href="login.html" style="color:var(--primary);font-weight:700;">Sign In</a>
+                    </p>
+                    <p style="text-align:center;color:var(--text-muted);font-size:13px;margin-top:8px;">
+                        Joining as a Buyer? <a href="buyer-register.html" style="color:var(--primary);">Register here
+                            →</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+    <script src="../js/cart.js"></script>
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateStepUI() {
+            ['step1', 'step2', 'step3'].forEach((id, i) => {
+                document.getElementById(id).style.display = i + 1 === currentStep ? 'block' : 'none';
+            });
+            ['dot1', 'dot2', 'dot3'].forEach((id, i) => {
+                document.getElementById(id).style.background = i + 1 <= currentStep ? 'var(--primary)' : 'var(--border)';
+            });
+            document.getElementById('step-label').textContent = `Step ${currentStep} of ${totalSteps}: ` + ['Personal Details', 'Farm Information', 'Account Setup'][currentStep - 1];
+            document.getElementById('prev-btn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('next-btn').style.display = currentStep < totalSteps ? 'block' : 'none';
+            document.getElementById('submit-btn').style.display = currentStep === totalSteps ? 'block' : 'none';
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) { currentStep++; updateStepUI(); }
+        }
+        function prevStep() {
+            if (currentStep > 1) { currentStep--; updateStepUI(); }
+        }
+        function togglePwd(id) { const el = document.getElementById(id); el.type = el.type === 'password' ? 'text' : 'password'; }
+
+        async function doFarmerRegister(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('pwd').value;
+            const cpwd = document.getElementById('cpwd').value;
+            if (pwd !== cpwd) { showToast('⚠ Passwords do not match!', 'error'); return; }
+
+            const btn = document.getElementById('submit-btn');
+            btn.textContent = '⏳ Registering…';
+            btn.disabled = true;
+
+            const userData = {
+                name: document.getElementById('fname').value + ' ' + document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value,
+                password: pwd,
+                role: 'farmer',
+                city: document.getElementById('district').value, // Use district as city
+                village: document.getElementById('village').value,
+                state: document.getElementById('state').value,
+                land: document.getElementById('land').value,
+                crops: document.getElementById('crops').value,
+                aadhar: document.getElementById('aadhar').value
+            };
+
+            try {
+                const res = await KBSession.register(userData);
+                if (res.success) {
+                    showToast('✅ Registration successful! Welcome!', 'success');
+                    setTimeout(() => window.location.href = 'farmer-dashboard.html', 1200);
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+                btn.textContent = '🌾 Create Farmer Account';
+                btn.disabled = false;
+            }
+        }
+
+        updateStepUI();
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

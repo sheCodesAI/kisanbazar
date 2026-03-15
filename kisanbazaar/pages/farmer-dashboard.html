@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmer Dashboard — KisanBazaar</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">🌿 KisanBazaar</a>
+        <ul class="navbar-nav">
+            <li><a href="farmer-dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="add-product.html">Add Product</a></li>
+        </ul>
+        <div class="navbar-actions">
+            <span style="font-size:14px; color:var(--text-muted);">🌾 Ramesh Kumar</span>
+            <a href="login.html" class="btn btn-outline btn-sm" onclick="logout()">Sign Out</a>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">R</div>
+                <div class="sidebar-name">Ramesh Kumar</div>
+                <div class="sidebar-role">🌾 Farmer · Nashik, MH</div>
+                <div style="margin-top:8px;"><span class="badge badge-green">✅ Verified Farmer</span></div>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" onclick="showSection('dashboard'); return false;"><span
+                            class="icon">📊</span> Dashboard</a></li>
+                <li><a href="add-product.html"><span class="icon">➕</span> Add Product</a></li>
+                <li><a href="#" onclick="showSection('my-products'); return false;"><span class="icon">📦</span> My
+                        Products</a></li>
+                <li><a href="#" onclick="showSection('orders'); return false;"><span class="icon">🛒</span> Orders <span
+                            class="badge badge-amber" style="margin-left:auto;">8</span></a></li>
+                <li><a href="#" onclick="showSection('earnings'); return false;"><span class="icon">💰</span>
+                        Earnings</a></li>
+                <li><a href="#" onclick="showSection('reviews'); return false;"><span class="icon">⭐</span> Reviews</a>
+                </li>
+                <li><a href="#" onclick="showSection('settings'); return false;"><span class="icon">⚙️</span>
+                        Settings</a></li>
+                <li><a href="login.html" onclick="logout()"><span class="icon">🚪</span> Sign Out</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main -->
+        <main class="dashboard-main">
+
+            <!-- ── DASHBOARD OVERVIEW ── -->
+            <div id="section-dashboard">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;">
+                    <div>
+                        <h2 style="margin-bottom:4px;">Good Morning, Ramesh! 🌅</h2>
+                        <p class="text-muted">Here's your farm performance today</p>
+                    </div>
+                    <a href="add-product.html" class="btn btn-primary">+ Add Product</a>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="showSection('earnings')" style="cursor:pointer;">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-value">₹24,850</div>
+                        <div class="stat-label">Total Earnings</div>
+                        <div class="stat-delta up">↑ 12% this month</div>
+                    </div>
+                    <div class="stat-card" onclick="showSection('orders')" style="cursor:pointer;">
+                        <div class="stat-icon">🛒</div>
+                        <div class="stat-value">147</div>
+                        <div class="stat-label">Orders Received</div>
+                        <div class="stat-delta up">↑ 8 new today</div>
+                    </div>
+                    <div class="stat-card" onclick="showSection('my-products')" style="cursor:pointer;">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-value">23</div>
+                        <div class="stat-label">Active Products</div>
+                        <div class="stat-delta up">↑ 3 added this week</div>
+                    </div>
+                    <div class="stat-card" onclick="showSection('reviews')" style="cursor:pointer;">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">Avg. Rating</div>
+                        <div class="stat-delta up">↑ 89 reviews</div>
+                    </div>
+                </div>
+                <!-- Quick Orders Preview -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Recent Orders</h3>
+                        <button class="btn btn-outline btn-sm" onclick="showSection('orders')">View All →</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Buyer</th>
+                                <th>Amt</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dash-orders-preview"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ── ORDERS SECTION ── -->
+            <div id="section-orders" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                    <h2>All Orders</h2>
+                    <div style="display:flex; gap:8px;">
+                        <button onclick="filterOrders('all')" class="btn btn-primary btn-sm" id="f-all">All</button>
+                        <button onclick="filterOrders('pending')" class="btn btn-outline btn-sm" id="f-pending">⏳
+                            Pending</button>
+                        <button onclick="filterOrders('confirmed')" class="btn btn-outline btn-sm" id="f-confirmed">✅
+                            Confirmed</button>
+                        <button onclick="filterOrders('delivered')" class="btn btn-outline btn-sm" id="f-delivered">📦
+                            Delivered</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Buyer</th>
+                                <th>Qty</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ── MY PRODUCTS ── -->
+            <div id="section-my-products" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                    <h2>My Products</h2>
+                    <a href="add-product.html" class="btn btn-primary">+ Add New</a>
+                </div>
+                <div class="products-grid" id="my-products-grid"></div>
+            </div>
+
+            <!-- ── EARNINGS ── -->
+            <div id="section-earnings" style="display:none;">
+                <h2 style="margin-bottom:24px;">Earnings & Payouts</h2>
+                <div class="stats-grid" style="margin-bottom:28px;">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-value">₹24,850</div>
+                        <div class="stat-label">This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-value">₹1,92,400</div>
+                        <div class="stat-label">This Year</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏦</div>
+                        <div class="stat-value">₹8,200</div>
+                        <div class="stat-label">Pending Payout</div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Transaction History</h3><button class="btn btn-outline btn-sm">Download CSV</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mar 9</td>
+                                <td style="color:var(--primary);font-weight:700;">#KB2341</td>
+                                <td>Tomatoes</td>
+                                <td style="font-weight:700;">₹280</td>
+                                <td><span class="badge badge-green">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mar 8</td>
+                                <td style="color:var(--primary);font-weight:700;">#KB2340</td>
+                                <td>Organic Wheat</td>
+                                <td style="font-weight:700;">₹875</td>
+                                <td><span class="badge badge-green">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mar 7</td>
+                                <td style="color:var(--primary);font-weight:700;">#KB2339</td>
+                                <td>Green Chilli</td>
+                                <td style="font-weight:700;">₹175</td>
+                                <td><span class="badge badge-yellow">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card" style="padding:24px; margin-top:20px;">
+                    <h3 style="margin-bottom:16px;">Request Payout</h3>
+                    <p class="text-muted" style="margin-bottom:16px;">Pending amount: <strong
+                            style="color:var(--primary);">₹8,200</strong></p>
+                    <button class="btn btn-primary"
+                        onclick="showToast('✅ Payout of ₹8,200 requested! It will be processed within 24 hours.','success')">Request
+                        Payout Now</button>
+                </div>
+            </div>
+
+            <!-- ── REVIEWS ── -->
+            <div id="section-reviews" style="display:none;">
+                <h2 style="margin-bottom:24px;">Customer Reviews</h2>
+                <div style="display:flex; justify-content:space-between; margin-bottom:24px;">
+                    <div class="card" style="padding:24px; text-align:center; flex:0 0 220px;">
+                        <div style="font-size:48px; font-weight:900; color:var(--primary);">4.8</div>
+                        <div style="color:#f59e0b; font-size:20px; margin-bottom:6px;">⭐⭐⭐⭐⭐</div>
+                        <p class="text-muted">Based on 89 reviews</p>
+                    </div>
+                    <div style="flex:1; margin-left:20px; display:flex; flex-direction:column; gap:12px;">
+                        <div class="card" style="padding:16px;">
+                            <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px;">
+                                <div
+                                    style="width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">
+                                    P</div>
+                                <div>
+                                    <p style="font-weight:700;">Priya Sharma</p><span
+                                        style="color:#f59e0b;">⭐⭐⭐⭐⭐</span> <span class="text-muted"
+                                        style="font-size:12px;">· Mar 8, 2025</span>
+                                </div>
+                            </div>
+                            <p class="text-muted">"The tomatoes were incredibly fresh. Arrived within 24 hours. Will
+                                definitely buy again!"</p>
+                        </div>
+                        <div class="card" style="padding:16px;">
+                            <div style="display:flex; gap:12px; align-items:center; margin-bottom:8px;">
+                                <div
+                                    style="width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;">
+                                    A</div>
+                                <div>
+                                    <p style="font-weight:700;">Amit Kumar</p><span style="color:#f59e0b;">⭐⭐⭐⭐⭐</span>
+                                    <span class="text-muted" style="font-size:12px;">· Mar 6, 2025</span>
+                                </div>
+                            </div>
+                            <p class="text-muted">"Excellent quality. You can really taste the difference from market
+                                produce."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SETTINGS ── -->
+            <div id="section-settings" style="display:none;">
+                <h2 style="margin-bottom:24px;">Account Settings</h2>
+                <div class="card" style="padding:28px; max-width:600px;">
+                    <h3 style="margin-bottom:20px;">Profile Information</h3>
+                    <div class="form-group"><label class="form-label">Farm Name</label><input type="text"
+                            class="form-control" value="Ramesh Kumar Farm" /></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                        <div class="form-group"><label class="form-label">First Name</label><input type="text"
+                                class="form-control" value="Ramesh" /></div>
+                        <div class="form-group"><label class="form-label">Last Name</label><input type="text"
+                                class="form-control" value="Kumar" /></div>
+                    </div>
+                    <div class="form-group"><label class="form-label">Mobile</label><input type="tel"
+                            class="form-control" value="9876543210" /></div>
+                    <div class="form-group"><label class="form-label">Village / District</label><input type="text"
+                            class="form-control" value="Nashik, Maharashtra" /></div>
+                    <div class="form-group"><label class="form-label">Bank Account No.</label><input type="text"
+                            class="form-control" value="••••••••••1234" /></div>
+                    <button class="btn btn-primary"
+                        onclick="showToast('✅ Profile updated successfully!','success')">Save Changes</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+    <script src="../js/cart.js"></script>
+    <script>
+        let ORDERS = [];
+        let MY_PRODUCTS = [];
+        const statusBadge = { pending: 'badge-yellow', confirmed: 'badge-green', delivered: 'badge-amber', confirmed: 'badge-green', shipping: 'badge-amber' };
+
+        async function initDashboard() {
+            const user = KBSession.getUser();
+            if (!user) { window.location.href = 'login.html'; return; }
+
+            // Profile info
+            document.querySelectorAll('.sidebar-name').forEach(el => el.textContent = user.name);
+            document.querySelectorAll('.sidebar-avatar').forEach(el => el.textContent = user.name[0]);
+            document.querySelector('.navbar-actions span').textContent = '🌾 ' + user.name;
+            document.querySelector('h2').textContent = `Good Morning, ${user.name.split(' ')[0]}! 🌅`;
+
+            try {
+                // Fetch orders and products in parallel
+                const [orders, products] = await Promise.all([
+                    KBApi.request(`/api/orders?userId=${user.id}&role=farmer`),
+                    KBApi.request('/api/products')
+                ]);
+
+                ORDERS = orders;
+                MY_PRODUCTS = products.filter(p => p.farmerId === user.id);
+
+                renderPreview();
+                populateStats();
+            } catch (err) {
+                showToast('Failed to load dashboard data', 'error');
+            }
+        }
+
+        function populateStats() {
+            const totalEarnings = ORDERS.reduce((sum, o) => sum + o.total, 0);
+            const cards = document.querySelectorAll('.stat-card');
+            if (cards.length >= 4) {
+                cards[0].querySelector('.stat-value').textContent = '₹' + totalEarnings.toLocaleString();
+                cards[1].querySelector('.stat-value').textContent = ORDERS.length;
+                cards[2].querySelector('.stat-value').textContent = MY_PRODUCTS.length;
+                // Rating stays 4.8 for now
+            }
+        }
+
+        function renderOrders(list) {
+            const tb = document.getElementById('orders-tbody');
+            if (!tb) return;
+            tb.innerHTML = '';
+            if (list.length === 0) {
+                tb.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;">No orders found.</td></tr>';
+                return;
+            }
+            list.forEach(o => {
+                const itemsStr = o.items.map(i => i.name).join(', ');
+                const qtyStr = o.items.map(i => `${i.qty} ${i.unit}`).join(', ');
+                tb.insertAdjacentHTML('beforeend', `
+        <tr>
+          <td style="font-weight:700;color:var(--primary);">#${o.id.slice(-6).toUpperCase()}</td>
+          <td>${itemsStr}</td><td>${o.userName || 'Buyer'}</td><td>${qtyStr}</td>
+          <td style="font-weight:700;">₹${o.total}</td><td>${new Date(o.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</td>
+          <td><span class="badge ${statusBadge[o.status] || 'badge-yellow'}">${o.status}</span></td>
+          <td>
+            ${o.status === 'pending' || o.status === 'Confirmed' ? `<button class="btn btn-outline btn-sm" onclick="updateOrderStatus('${o.id}', 'confirmed')">✅ Confirm</button>` : ''}
+            ${o.status === 'confirmed' ? `<button class="btn btn-primary btn-sm" onclick="updateOrderStatus('${o.id}', 'delivered')">📦 Delivered</button>` : ''}
+            ${o.status === 'delivered' ? `<span class="badge badge-green">Done</span>` : ''}
+          </td>
+        </tr>
+      `);
+            });
+        }
+
+        async function updateOrderStatus(id, status) {
+            try {
+                await KBApi.request(`/api/orders/${id}`, 'PATCH', { status });
+                showToast(`Order status updated to ${status}`, 'success');
+                initDashboard();
+                if (document.getElementById('section-orders').style.display !== 'none') {
+                    renderOrders(ORDERS);
+                }
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        function filterOrders(type) {
+            ['all', 'pending', 'confirmed', 'delivered'].forEach(t => {
+                const el = document.getElementById('f-' + t);
+                if (el) { el.className = t === type ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'; }
+            });
+            const list = type === 'all' ? ORDERS : ORDERS.filter(o => o.status === type);
+            renderOrders(list);
+        }
+
+        function renderMyProducts() {
+            const grid = document.getElementById('my-products-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            if (MY_PRODUCTS.length === 0) {
+                grid.innerHTML = '<div class="card" style="padding:40px; text-align:center; grid-column: 1/-1;">You haven\'t listed any products yet.</div>';
+                return;
+            }
+            MY_PRODUCTS.forEach(p => {
+                grid.insertAdjacentHTML('beforeend', `
+        <div class="card" style="padding:20px;">
+          <div style="height:120px;display:flex;align-items:center;justify-content:center;">
+             <img src="${p.img.startsWith('../') ? p.img : '../' + p.img}" style="max-height:100%; max-width:100%; object-fit:contain;" />
+          </div>
+          <h3 style="font-family:'DM Sans',sans-serif;font-size:16px;margin:12px 0 8px;">${p.name}</h3>
+          <p style="color:var(--primary);font-weight:800;font-size:18px;margin-bottom:4px;">₹${p.price}/${p.unit}</p>
+          <p class="text-muted" style="font-size:13px;margin-bottom:16px;">Rating: ⭐ ${p.rating}</p>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-outline btn-sm" style="flex:1;" onclick="editProduct('${p.id}')">✏ Edit</button>
+            <button class="btn btn-sm" style="flex:1;background:rgba(198,40,40,0.1);color:var(--error);border:none;">🗑 Delete</button>
+          </div>
+        </div>
+      `);
+            });
+        }
+
+        function renderPreview() {
+            const tb = document.getElementById('dash-orders-preview');
+            if (!tb) return;
+            tb.innerHTML = '';
+            ORDERS.slice(0, 5).forEach(o => {
+                const itemsStr = o.items.map(i => i.name).join(', ');
+                tb.insertAdjacentHTML('beforeend', `
+        <tr>
+          <td style="font-weight:700;color:var(--primary);">#${o.id.slice(-6).toUpperCase()}</td>
+          <td>${itemsStr}</td><td>${o.userName || 'Buyer'}</td>
+          <td style="font-weight:700;">₹${o.total}</td>
+          <td><span class="badge ${statusBadge[o.status] || 'badge-yellow'}">${o.status}</span></td>
+          <td><button class="btn btn-outline btn-sm" onclick="showSection('orders')">Manage</button></td>
+        </tr>
+      `);
+            });
+        }
+
+        const SECTIONS = ['dashboard', 'orders', 'my-products', 'earnings', 'reviews', 'settings'];
+
+        function showSection(name) {
+            SECTIONS.forEach(s => {
+                const el = document.getElementById('section-' + s);
+                if (el) el.style.display = s === name ? 'block' : 'none';
+            });
+            document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+            const map = { dashboard: 0, 'my-products': 2, orders: 3, earnings: 4, reviews: 5, settings: 6 };
+            const idx = map[name];
+            const links = document.querySelectorAll('.sidebar-nav a');
+            if (idx !== undefined && links[idx]) links[idx].classList.add('active');
+
+            if (name === 'orders') { renderOrders(ORDERS); }
+            if (name === 'my-products') { renderMyProducts(); }
+        }
+
+        function logout() {
+            KBSession.logout();
+        }
+
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

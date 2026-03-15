@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buyer Dashboard — KisanBazaar</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="navbar-brand">🌿 KisanBazaar</a>
+        <ul class="navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../products.html">Products</a></li>
+        </ul>
+        <div class="navbar-actions">
+            <a href="cart.html" class="btn btn-outline btn-sm">🛒 Cart <span class="cart-count"
+                    style="background:var(--accent);color:#fff;border-radius:100px;padding:2px 8px;font-size:12px;margin-left:4px;">0</span></a>
+            <span style="font-size:14px; color:var(--text-muted);">👤 Priya Sharma</span>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">P</div>
+                <div class="sidebar-name">Priya Sharma</div>
+                <div class="sidebar-role">🛒 Buyer · Mumbai, MH</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" onclick="showSection('orders'); return false;"><span
+                            class="icon">📊</span> My Orders</a></li>
+                <li><a href="../products.html"><span class="icon">🔍</span> Browse Products</a></li>
+                <li><a href="cart.html"><span class="icon">🛒</span> Cart <span class="cart-count badge badge-amber"
+                            style="margin-left:auto;font-size:11px;">0</span></a></li>
+                <li><a href="order-tracking.html"><span class="icon">📍</span> Track Order</a></li>
+                <li><a href="#" onclick="showSection('wishlist'); return false;"><span class="icon">❤️</span>
+                        Wishlist</a></li>
+                <li><a href="#" onclick="showSection('reviews'); return false;"><span class="icon">⭐</span> My
+                        Reviews</a></li>
+                <li><a href="#" onclick="showSection('payments'); return false;"><span class="icon">💳</span>
+                        Payments</a></li>
+                <li><a href="#" onclick="showSection('settings'); return false;"><span class="icon">⚙️</span>
+                        Settings</a></li>
+                <li><a href="login.html" onclick="logout()"><span class="icon">🚪</span> Sign Out</a></li>
+            </ul>
+        </aside>
+
+        <main class="dashboard-main">
+
+            <!-- ── ORDERS ── -->
+            <div id="section-orders">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                    <div>
+                        <h2 style="margin-bottom:4px;">My Orders 🛒</h2>
+                        <p class="text-muted">Track and manage your purchases</p>
+                    </div>
+                    <a href="../products.html" class="btn btn-primary">+ New Order</a>
+                </div>
+                <div class="stats-grid"
+                    style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr));margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Total Orders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🚚</div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">In Delivery</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value">14</div>
+                        <div class="stat-label">Delivered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💚</div>
+                        <div class="stat-value">₹4,820</div>
+                        <div class="stat-label">Total Spent</div>
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
+                    <button class="btn btn-primary btn-sm" id="ob-all" onclick="filterBuyerOrders('all')">All
+                        Orders</button>
+                    <button class="btn btn-outline btn-sm" id="ob-pending" onclick="filterBuyerOrders('pending')">⏳
+                        Pending</button>
+                    <button class="btn btn-outline btn-sm" id="ob-shipping" onclick="filterBuyerOrders('shipping')">🚚
+                        Shipping</button>
+                    <button class="btn btn-outline btn-sm" id="ob-delivered" onclick="filterBuyerOrders('delivered')">✅
+                        Delivered</button>
+                </div>
+                <div id="buyer-orders-list"></div>
+            </div>
+
+            <!-- ── WISHLIST ── -->
+            <div id="section-wishlist" style="display:none;">
+                <h2 style="margin-bottom:24px;">My Wishlist ❤️</h2>
+                <div class="products-grid" id="wishlist-grid"></div>
+            </div>
+
+            <!-- ── REVIEWS ── -->
+            <div id="section-reviews" style="display:none;">
+                <h2 style="margin-bottom:24px;">My Reviews ⭐</h2>
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div class="card" style="padding:20px;">
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span class="badge badge-green">✅ Verified Purchase</span>
+                            <span class="text-muted" style="font-size:12px;">Feb 28, 2025</span>
+                        </div>
+                        <h4 style="font-family:'DM Sans',sans-serif;margin-bottom:6px;">Fresh Tomatoes — Ramesh Kumar
+                            Farm</h4>
+                        <div style="color:#f59e0b;margin-bottom:6px;">⭐⭐⭐⭐⭐</div>
+                        <p class="text-muted">"The tomatoes were incredibly fresh! Arrived within 24 hours."</p>
+                    </div>
+                    <div class="card" style="padding:20px;">
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                            <span class="badge badge-green">✅ Verified Purchase</span>
+                            <span class="text-muted" style="font-size:12px;">Mar 4, 2025</span>
+                        </div>
+                        <h4 style="font-family:'DM Sans',sans-serif;margin-bottom:6px;">Organic Wheat Flour — Suresh
+                            Patil</h4>
+                        <div style="color:#f59e0b;margin-bottom:6px;">⭐⭐⭐⭐⭐</div>
+                        <p class="text-muted">"Best whole wheat flour I've had! Makes the fluffiest rotis."</p>
+                    </div>
+                </div>
+                <div style="margin-top:24px;">
+                    <h3 style="margin-bottom:12px;">Write a Review</h3>
+                    <select class="form-control" style="max-width:300px;margin-bottom:12px;">
+                        <option>Select a delivered order…</option>
+                        <option>Fresh Tomatoes (#KB2338)</option>
+                        <option>Organic Wheat (#KB2330)</option>
+                    </select>
+                    <textarea class="form-control" style="max-width:500px;" rows="3"
+                        placeholder="Share your experience…"></textarea>
+                    <button class="btn btn-primary" style="margin-top:12px;"
+                        onclick="showToast('✅ Review submitted! Thank you.','success')">Submit Review</button>
+                </div>
+            </div>
+
+            <!-- ── PAYMENTS ── -->
+            <div id="section-payments" style="display:none;">
+                <h2 style="margin-bottom:24px;">Payment History 💳</h2>
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Transactions</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Order ID</th>
+                                <th>Method</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mar 9</td>
+                                <td style="color:var(--primary);font-weight:700;">#KB2341</td>
+                                <td>UPI (GPay)</td>
+                                <td style="font-weight:700;">₹560</td>
+                                <td><span class="badge badge-green">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mar 7</td>
+                                <td style="color:var(--primary);font-weight:700;">#KB2338</td>
+                                <td>UPI (PhonePe)</td>
+                                <td style="font-weight:700;">₹895</td>
+                                <td><span class="badge badge-green">Success</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mar 4</td>
+                                <td style="color:var(--primary);font-weight:700;">#KB2330</td>
+                                <td>COD</td>
+                                <td style="font-weight:700;">₹376</td>
+                                <td><span class="badge badge-green">Collected</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card" style="padding:24px;margin-top:20px;">
+                    <h3 style="margin-bottom:12px;">Saved Payment Methods</h3>
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+                        <div
+                            style="display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);">
+                            <span>📱 priya@gpay • Google Pay</span>
+                            <button class="btn btn-outline btn-sm"
+                                onclick="showToast('UPI ID removed','')">Remove</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" style="margin-top:12px;"
+                        onclick="showToast('➕ Add payment method — coming soon!','')">+ Add Payment Method</button>
+                </div>
+            </div>
+
+            <!-- ── SETTINGS ── -->
+            <div id="section-settings" style="display:none;">
+                <h2 style="margin-bottom:24px;">Account Settings</h2>
+                <div class="card" style="padding:28px;max-width:600px;">
+                    <h3 style="margin-bottom:20px;">Profile Information</h3>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                        <div class="form-group"><label class="form-label">First Name</label><input type="text"
+                                class="form-control" value="Priya" /></div>
+                        <div class="form-group"><label class="form-label">Last Name</label><input type="text"
+                                class="form-control" value="Sharma" /></div>
+                    </div>
+                    <div class="form-group"><label class="form-label">Email</label><input type="email"
+                            class="form-control" value="priya@example.com" /></div>
+                    <div class="form-group"><label class="form-label">Mobile</label><input type="tel"
+                            class="form-control" value="9876543210" /></div>
+                    <div class="form-group"><label class="form-label">Default City</label><input type="text"
+                            class="form-control" value="Mumbai" /></div>
+                    <div class="form-group"><label class="form-label">Default Address</label><textarea
+                            class="form-control"
+                            rows="2">Flat 403, Green Valley Apartments, Andheri West, Mumbai - 400053</textarea></div>
+                    <button class="btn btn-primary"
+                        onclick="showToast('✅ Profile updated successfully!','success')">Save Changes</button>
+                    <button class="btn btn-outline"
+                        style="margin-left:12px;color:var(--error);border-color:var(--error);"
+                        onclick="changePassword()">Change Password</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+    <script src="../js/cart.js"></script>
+    <script>
+        let BUYER_ORDERS = [];
+        const statusMap = { pending: { badge: 'badge-yellow', icon: '⏳' }, confirmed: { badge: 'badge-green', icon: '✅' }, shipping: { badge: 'badge-amber', icon: '🚚' }, delivered: { badge: 'badge-green', icon: '✅' } };
+
+        async function initDashboard() {
+            const user = KBSession.getUser();
+            if (!user) { window.location.href = 'login.html'; return; }
+
+            // Profile info
+            document.querySelectorAll('.sidebar-name').forEach(el => el.textContent = user.name);
+            document.querySelectorAll('.sidebar-avatar').forEach(el => el.textContent = user.name[0]);
+            document.getElementById('profile-name-nav').textContent = '👤 ' + user.name.split(' ')[0];
+
+            try {
+                BUYER_ORDERS = await KBApi.request(`/api/orders?userId=${user.id}`);
+                filterBuyerOrders('all');
+                populateStats();
+            } catch (err) {
+                showToast('Failed to load orders', 'error');
+            }
+        }
+
+        function populateStats() {
+            const total = BUYER_ORDERS.length;
+            const inDelivery = BUYER_ORDERS.filter(o => o.status === 'shipping').length;
+            const delivered = BUYER_ORDERS.filter(o => o.status === 'delivered').length;
+            const spent = BUYER_ORDERS.reduce((sum, o) => sum + o.total, 0);
+
+            const cards = document.querySelectorAll('.stat-card');
+            if (cards.length >= 4) {
+                cards[0].querySelector('.stat-value').textContent = total;
+                cards[1].querySelector('.stat-value').textContent = inDelivery;
+                cards[2].querySelector('.stat-value').textContent = delivered;
+                cards[3].querySelector('.stat-value').textContent = '₹' + spent.toLocaleString();
+            }
+        }
+
+        function renderBuyerOrders(list) {
+            const c = document.getElementById('buyer-orders-list');
+            if (!c) return;
+            c.innerHTML = '';
+            if (list.length === 0) {
+                c.innerHTML = '<div class="card" style="padding:40px; text-align:center; color:var(--text-muted);">No orders found.</div>';
+                return;
+            }
+            list.forEach(o => {
+                const s = statusMap[o.status] || statusMap.pending;
+                const itemsStr = o.items.map(i => `${i.name} (${i.qty} ${i.unit})`).join(', ');
+                c.insertAdjacentHTML('beforeend', `
+        <div class="card" style="padding:20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div style="flex:1;min-width:200px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;">
+              <span style="font-weight:800;color:var(--primary);font-size:16px;">#${o.id.slice(-6).toUpperCase()}</span>
+              <span class="badge ${s.badge}">${s.icon} ${o.status}</span>
+              ${o.eta ? `<span class="badge badge-green">ETA: ${o.eta}</span>` : ''}
+            </div>
+            <p style="font-size:14px;margin-bottom:4px;">${itemsStr}</p>
+            <p class="text-muted" style="font-size:13px;">Placed on: ${new Date(o.timestamp).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:22px;font-weight:800;margin-bottom:12px;">₹${o.total}</div>
+            <div style="display:flex;gap:8px;">
+              <a href="order-tracking.html?id=${o.id}" class="btn btn-outline btn-sm">📍 Track</a>
+              ${o.status === 'delivered' ? `<button class="btn btn-primary btn-sm" onclick="writeReview('${o.id}')">⭐ Review</button>` : ''}
+            </div>
+          </div>
+        </div>
+      `);
+            });
+        }
+
+        function filterBuyerOrders(status) {
+            ['all', 'pending', 'shipping', 'delivered'].forEach(s => {
+                const el = document.getElementById('ob-' + s);
+                if (el) el.className = s === status ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
+            });
+            const filtered = status === 'all' ? BUYER_ORDERS : BUYER_ORDERS.filter(o => o.status === status);
+            renderBuyerOrders(filtered);
+        }
+
+        function writeReview(orderId) {
+            showSection('reviews');
+            showToast('Reviewing order ' + orderId + '…');
+        }
+
+        function logout() {
+            KBSession.logout();
+        }
+
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>
