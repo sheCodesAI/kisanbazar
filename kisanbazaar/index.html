@@ -83,8 +83,29 @@
     <!-- ── PRODUCTS SECTION ────────────────────────────────────────── -->
     <section id="products-section" class="section" style="padding:60px 0;">
       <div class="container">
-        <div style="margin-bottom:40px; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
-          <img src="images/popular_banner.png" alt="Popular This Week" style="width:100%; display:block;">
+        <div class="popular-banner" style="
+          width: 100%;
+          height: 200px;
+          border-radius: 16px;
+          background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/popular_banner_v2.png');
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: flex-end;
+          padding: 30px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        ">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span style="font-size: 20px;">🔥</span>
+              <h3
+                style="font-size: 28px; font-weight: 900; color: #000; margin: 0; text-shadow: 0 2px 4px rgba(255,255,255,0.8);">
+                Popular This Week</h3>
+            </div>
+            <p style="font-size: 16px; color: #333; margin: 0; font-weight: 600;">Fresh finds that others are loving</p>
+          </div>
         </div>
         <div class="products-grid" id="products-grid">
           <!-- JS rendered -->

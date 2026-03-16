@@ -8,13 +8,22 @@
       "role": "buyer",
       "city": "pune",
       "mobile": "09307449365"
+    },
+    {
+      "id": "u1773654225477",
+      "name": "Niraja K",
+      "email": "nirajakurra3@gmail.com",
+      "password": "nirajakurra",
+      "role": "buyer",
+      "city": "pune",
+      "mobile": "09307449365"
     }
   ],
   "products": [
     {
       "id": "p17",
-      "img": "images/products/carrot.png",
-      "filter": "scale(1.6) translateY(5px) brightness(1.1)",
+      "img": "images/products/carrot_real.png",
+      "filter": "none",
       "emoji": "🥕",
       "name": "Carrot",
       "farmerId": "u5",
@@ -45,8 +54,8 @@
     },
     {
       "id": "p19",
-      "img": "images/products/green-chillies.png",
-      "filter": "hue-rotate(-120deg) contrast(1.2)",
+      "img": "images/products/bell_pepper_red_real.png",
+      "filter": "none",
       "emoji": "🫑",
       "name": "Bell Pepper (Red)",
       "farmerId": "u1",
@@ -61,8 +70,8 @@
     },
     {
       "id": "p20",
-      "img": "images/products/tomatoes.png",
-      "filter": "hue-rotate(60deg) saturate(1.5) brightness(1.2)",
+      "img": "images/products/bell_pepper_yellow_real.png",
+      "filter": "none",
       "emoji": "🫑",
       "name": "Bell Pepper (Yellow)",
       "farmerId": "u10",
@@ -77,8 +86,8 @@
     },
     {
       "id": "p21",
-      "img": "images/products/cauliflower.png",
-      "filter": "hue-rotate(100deg) brightness(0.9)",
+      "img": "images/products/cabbage_real.png",
+      "filter": "none",
       "emoji": "🥬",
       "name": "Cabbage",
       "farmerId": "u10",
@@ -93,9 +102,9 @@
     },
     {
       "id": "p22",
-      "img": "images/products/broccoli.png",
+      "img": "images/products/broccoli_v2.png",
       "filter": "none",
-      "emoji": "🍅",
+      "emoji": "🥦",
       "name": "Broccoli",
       "farmerId": "u1",
       "farmer": "Ramesh Kumar",
@@ -125,8 +134,8 @@
     },
     {
       "id": "p24",
-      "img": "images/products/onions.png",
-      "filter": "hue-rotate(-40deg) brightness(0.6) saturate(1.5)",
+      "img": "images/products/beetroot_real.png",
+      "filter": "none",
       "emoji": "🫚",
       "name": "Beetroot",
       "farmerId": "u7",
@@ -317,8 +326,8 @@
     },
     {
       "id": "p36",
-      "img": "images/products/cucumber.png",
-      "filter": "hue-rotate(20deg) brightness(0.8) saturate(0.5)",
+      "img": "images/products/bitter_gourd_real.png",
+      "filter": "none",
       "emoji": "🥒",
       "name": "Bitter Gourd",
       "farmerId": "u8",
@@ -333,8 +342,8 @@
     },
     {
       "id": "p37",
-      "img": "images/products/cucumber.png",
-      "filter": "hue-rotate(-10deg) brightness(0.9)",
+      "img": "images/products/ridge_gourd_real.png",
+      "filter": "none",
       "emoji": "🥒",
       "name": "Ridge Gourd",
       "farmerId": "u1",
@@ -365,8 +374,8 @@
     },
     {
       "id": "p39",
-      "img": "images/products/orange.png",
-      "filter": "brightness(0.9) saturate(1.2)",
+      "img": "images/products/pumpkin_real.png",
+      "filter": "none",
       "emoji": "🎃",
       "name": "Pumpkin",
       "farmerId": "u3",
@@ -381,9 +390,9 @@
     },
     {
       "id": "p40",
-      "img": "images/products/green-chillies.png",
-      "filter": "hue-rotate(15deg) brightness(0.7)",
-      "emoji": "🎋",
+      "img": "images/products/drumstick_real.png",
+      "filter": "none",
+      "emoji": "🌿",
       "name": "Drumstick",
       "farmerId": "u6",
       "farmer": "Sita Devi",
@@ -397,8 +406,8 @@
     },
     {
       "id": "p41",
-      "img": "images/products/broccoli.png",
-      "filter": "hue-rotate(50deg) saturate(1.2)",
+      "img": "images/products/capsicum_real.png",
+      "filter": "none",
       "emoji": "🫑",
       "name": "Capsicum",
       "farmerId": "u10",
@@ -445,7 +454,7 @@
     },
     {
       "id": "p44",
-      "img": "images/products/banana_search_result_1773593135297.png",
+      "img": "images/products/banana_robusta_real.png",
       "filter": "none",
       "emoji": "🍌",
       "name": "Banana (Robusta)",
@@ -477,8 +486,8 @@
     },
     {
       "id": "p46",
-      "img": "images/products/tomatoes.png",
-      "filter": "hue-rotate(-40deg) brightness(0.7) saturate(1.8)",
+      "img": "images/products/pomegranate_real.png",
+      "filter": "none",
       "emoji": "🍎",
       "name": "Pomegranate",
       "farmerId": "u4",
@@ -493,8 +502,8 @@
     },
     {
       "id": "p47",
-      "img": "images/products/mangoes.png",
-      "filter": "hue-rotate(-40deg) brightness(1.1)",
+      "img": "images/products/papaya_real.png",
+      "filter": "none",
       "emoji": "🥭",
       "name": "Papaya",
       "farmerId": "u6",
@@ -509,8 +518,8 @@
     },
     {
       "id": "p48",
-      "img": "images/products/apple.png",
-      "filter": "hue-rotate(120deg) brightness(1.3) contrast(1.1)",
+      "img": "images/products/guava_real.png",
+      "filter": "none",
       "emoji": "🍏",
       "name": "Guava",
       "farmerId": "u7",
@@ -525,7 +534,7 @@
     },
     {
       "id": "p49",
-      "img": "images/products/custard_apple_1773599565868.png",
+      "img": "images/products/custard_apple_real.png",
       "filter": "none",
       "emoji": "🫚",
       "name": "Custard Apple",
@@ -653,8 +662,8 @@
     },
     {
       "id": "p57",
-      "img": "images/products/potatoes.png",
-      "filter": "brightness(0.8) saturate(0.5)",
+      "img": "images/products/chikoo_real.png",
+      "filter": "none",
       "emoji": "🥔",
       "name": "Chikoo",
       "farmerId": "u1",
@@ -1740,5 +1749,36 @@
       "desc": "Premium quality Castor Oil sourced directly from the farms of Mahabaleshwar. Fresh, healthy, and natural."
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "userId": "u1773654225477",
+      "userName": "Niraja K",
+      "items": [
+        {
+          "name": "Fresh Tomatoes",
+          "price": 28,
+          "unit": "kg",
+          "farmer": "Ramesh Kumar",
+          "emoji": "🛒",
+          "qty": 1
+        },
+        {
+          "name": "Cauliflower",
+          "price": 36,
+          "unit": "kg",
+          "farmer": "Gopi Rathod",
+          "emoji": "🍅",
+          "qty": 2
+        }
+      ],
+      "total": 120,
+      "address": "Priya, Flat 403, Green Valley Apartments, Mumbai - 400053",
+      "payment": "upi",
+      "slot": "morn",
+      "eta": "Tomorrow, 7–11 AM",
+      "id": "ord1773655572780",
+      "status": "Confirmed",
+      "timestamp": "2026-03-16T10:06:12.780Z"
+    }
+  ]
 }
