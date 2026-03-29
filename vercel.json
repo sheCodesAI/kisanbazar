@@ -1,13 +1,9 @@
 {
-    "functions": {
-        "kisanbazaar/server.js": {
-            "runtime": "@vercel/node@20.x"
-        }
-    },
+    "version": 2,
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "/kisanbazaar/server.js"
+            "destination": "/api/index.js"
         },
         {
             "source": "/(.*)",
