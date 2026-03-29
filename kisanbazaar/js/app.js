@@ -284,6 +284,106 @@ function updateNavbarAuth() {
     }
 }
 
+/* ── Premium Enhancements Init ──────────────────────────── */
+
+function initPremiumFeatures() {
+    initLeafParticles();
+    initCounters();
+    initTestimonials();
+    initParallax();
+}
+
+/* 1. Leaf Particles */
+function initLeafParticles() {
+    const container = document.getElementById('leaf-container');
+    if (!container) return;
+
+    const leafEmojis = ['🍃', '🌿', '☘️', '🌱'];
+    const count = 15;
+
+    for (let i = 0; i < count; i++) {
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf-particle';
+        leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+
+        const size = Math.random() * 20 + 15;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 20;
+        const duration = Math.random() * 10 + 10;
+
+        leaf.style.left = `${left}%`;
+        leaf.style.fontSize = `${size}px`;
+        leaf.style.animationDelay = `${delay}s`;
+        leaf.style.animationDuration = `${duration}s`;
+
+        container.appendChild(leaf);
+    }
+}
+
+/* 2. Animated Counters */
+function initCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const countTo = parseFloat(target.getAttribute('data-target'));
+                animateCount(target, countTo);
+                observer.unobserve(target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => observer.observe(c));
+}
+
+function animateCount(el, target) {
+    let current = 0;
+    const duration = 2000;
+    const stepTime = 20;
+    const steps = duration / stepTime;
+    const increment = target / steps;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            el.textContent = target % 1 === 0 ? target.toLocaleString() : target.toFixed(1);
+            clearInterval(timer);
+        } else {
+            el.textContent = target % 1 === 0 ? Math.floor(current).toLocaleString() : current.toFixed(1);
+        }
+    }, stepTime);
+}
+
+/* 3. Testimonials Slider */
+function initTestimonials() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    if (slides.length <= 1) return;
+
+    let currentSlide = 0;
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000);
+}
+
+/* 4. Parallax Effect */
+function initParallax() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroText = document.querySelector('.hero-text-content');
+        const heroCircle = document.querySelector('.hero-composition');
+
+        if (heroText) {
+            heroText.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+        if (heroCircle) {
+            heroCircle.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+    });
+}
+
 /* ── Init on DOM ready ───────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function () {
     initMobileNav();
@@ -291,4 +391,5 @@ document.addEventListener('DOMContentLoaded', function () {
     initBackToTop();
     setTimeout(initScrollReveal, 100);
     updateNavbarAuth();
+    initPremiumFeatures();
 });

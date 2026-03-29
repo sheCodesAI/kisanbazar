@@ -1,4 +1,17 @@
 {
-    "buildCommand": "npx expo export -p web",
-    "outputDirectory": "dist"
+    "functions": {
+        "kisanbazaar/server.js": {
+            "runtime": "@vercel/node"
+        }
+    },
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/kisanbazaar/server.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/kisanbazaar/$1"
+        }
+    ]
 }

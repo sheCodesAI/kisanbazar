@@ -188,17 +188,15 @@ app.get('*', (req, res) => {
 });
 
 // ── Start ─────────────────────────────────────────────────────
-app.listen(PORT, () => {
-    const configured = process.env.RAZORPAY_KEY_ID && !process.env.RAZORPAY_KEY_ID.includes('YOUR_KEY_ID');
-    console.log('');
-    console.log('🌿 KisanBazaar server running at http://localhost:' + PORT);
-    console.log('💳 Razorpay: ' + (configured ? '✅ Configured' : '⚠️  Keys not set — add them to .env'));
-    console.log('');
-    if (!configured) {
-        console.log('  To configure Razorpay:');
-        console.log('  1. Go to https://dashboard.razorpay.com → Test Mode → Settings → API Keys');
-        console.log('  2. Edit kisanbazaar/.env and replace the placeholder values');
-        console.log('  3. Restart the server: node server.js');
+// ── Export for Vercel ─────────────────────────────────────────
+module.exports = app;
+
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        const configured = process.env.RAZORPAY_KEY_ID && !process.env.RAZORPAY_KEY_ID.includes('YOUR_KEY_ID');
         console.log('');
-    }
-});
+        console.log('🌿 KisanBazaar server running at http://localhost:' + PORT);
+        console.log('💳 Razorpay: ' + (configured ? '✅ Configured' : '⚠️  Keys not set — add them to .env'));
+        console.log('');
+    });
+}

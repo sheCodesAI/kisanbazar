@@ -62,12 +62,30 @@
             <!-- Popular Products Section -->
             <div id="popular-products-section"
                 style="margin-bottom: 40px; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                <div
-                    style="background: url('images/popular_promo.png') center/cover no-repeat; height: 160px; position: relative;">
-                    <div
-                        style="position:absolute; bottom:0; left:0; width:100%; padding:20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color:#fff;">
-                        <h2 style="font-size: 20px; font-weight: 800; margin: 0;">🔥 Popular This Week</h2>
-                        <p style="font-size: 13px; opacity: 0.9; margin: 0;">Fresh finds that others are loving</p>
+                <div class="popular-banner" style="
+                  width: 100%;
+                  height: 200px;
+                  border-radius: 16px;
+                  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('images/popular_banner_v2.png');
+                  background-size: cover;
+                  background-position: center;
+                  display: flex;
+                  align-items: flex-end;
+                  padding: 30px;
+                  position: relative;
+                  overflow: hidden;
+                  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                ">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 20px;">🔥</span>
+                            <h3
+                                style="font-size: 28px; font-weight: 900; color: #000; margin: 0; text-shadow: 0 2px 4px rgba(255,255,255,0.8);">
+                                Popular This Week</h3>
+                        </div>
+                        <p style="font-size: 16px; color: #333; margin: 0; font-weight: 600;">Fresh finds that others
+                            are loving
+                        </p>
                     </div>
                 </div>
                 <div id="popular-row"

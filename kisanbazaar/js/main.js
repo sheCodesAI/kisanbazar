@@ -14,10 +14,12 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  { img: 'images/products/tomatoes.png', name: 'Farm Fresh Tomatoes', farmer: 'Ramesh Kumar', region: 'Nashik, MH', price: 28, unit: 'kg', rating: 4.8, reviews: 127 },
-  { img: 'images/products/carrot.png', name: 'Premium Carrots', farmer: 'David Fernandes', region: 'Ooty, TN', price: 42, unit: 'kg', rating: 4.9, reviews: 89 },
-  { img: 'images/products/milk.png', name: 'Pure Cow Milk', farmer: 'Suresh Patil', region: 'Pune, MH', price: 65, unit: 'L', rating: 4.7, reviews: 203 },
-  { img: 'images/products/broccoli.png', name: 'Fresh Broccoli', farmer: 'Vijay Bhosale', region: 'Nashik, MH', price: 85, unit: 'kg', rating: 4.6, reviews: 154 },
+  { img: 'images/products/bell_pepper_yellow_real.png', name: 'Bell Pepper (Yellow)', farmer: 'Sunil Gavaskar', region: 'Nashik, MH', price: 66, unit: 'kg', rating: 5, reviews: 127 },
+  { img: 'images/products/ragi_1773599981126.png', name: 'Ragi (Nachni)', farmer: 'Anna Hazare', region: 'Ralegan, MH', price: 123, unit: 'kg', rating: 5, reviews: 89 },
+  { img: 'images/products/maize_1773600203331.png', name: 'Maize', farmer: 'Sharad Pawar', region: 'Baramati, MH', price: 43, unit: 'kg', rating: 5, reviews: 203 },
+  { img: 'images/products/bajra_1773599928300.png', name: 'Finger Millet', farmer: 'Vijay Bhosale', region: 'Nashik, MH', price: 94, unit: 'kg', rating: 5, reviews: 154 },
+  { img: 'images/products/jowar_1773599853798.png', name: 'Green Gram (Moong)', farmer: 'Anand Mahindra', region: 'Pune, MH', price: 90, unit: 'kg', rating: 5, reviews: 76 },
+  { img: 'images/products/moong-dal.png', name: 'Moong Dal', farmer: 'Ratan Tata', region: 'Mumbai, MH', price: 173, unit: 'kg', rating: 5, reviews: 94 }
 ];
 
 const FARMERS = [
@@ -75,18 +77,20 @@ async function renderProducts(products, containerId) {
 
   list.forEach(p => {
     const encodedName = encodeURIComponent(p.name);
-    // Home page uses circular style
+    // Home page uses premium product card scroll
     if (!containerId || containerId === 'products-grid') {
+      grid.classList.add('popular-categories-wrapper');
       grid.insertAdjacentHTML('beforeend', `
-        <div class="product-card-circle" onclick="window.location.href='pages/product-details.html?name=${encodedName}'" style="cursor:pointer;">
-          <div class="product-circle-img">
-            ${p.img ? `<img src="${p.img.startsWith('../') ? p.img.slice(3) : p.img}" style="max-height:100%; max-width:100%; object-fit:contain; filter:${p.filter || 'none'};" />` : (p.emoji ? `<span style="font-size:80px;">${p.emoji}</span>` : '')}
+        <div class="premium-product-card" onclick="window.location.href='pages/product-details.html?name=${encodedName}'" style="cursor:pointer;">
+          <div class="card-image-wrapper">
+             <img src="${p.img}" alt="${p.name}">
           </div>
-          <div class="product-circle-info">
-            <h3>${p.name.toUpperCase()}</h3>
-            <div class="price">₹${p.price}</div>
-            <div style="font-weight:700; color:#555; margin-bottom:8px;">⭐ ${p.rating}</div>
-            <a class="btn-read-more">DETAILS</a>
+          <div class="card-details">
+            <h4 class="card-title">${p.name}</h4>
+            <div class="card-meta">
+              <span class="card-price">₹${p.price}</span>
+              <div class="card-rating"><span>★</span> ${p.rating}</div>
+            </div>
           </div>
         </div>
       `);
