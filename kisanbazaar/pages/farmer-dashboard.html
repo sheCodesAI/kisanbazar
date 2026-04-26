@@ -11,14 +11,25 @@
 <body>
 
     <nav class="navbar">
-        <a href="../index.html" class="navbar-brand">🌿 KisanBazaar</a>
-        <ul class="navbar-nav">
-            <li><a href="farmer-dashboard.html" class="active">Dashboard</a></li>
-            <li><a href="add-product.html">Add Product</a></li>
-        </ul>
+        <div class="navbar-brand-group">
+            <div class="navbar-location">Nashik / Maharashtra</div>
+            <a href="../index.html" class="navbar-brand">🌿 KisanBazaar</a>
+        </div>
+
+        <div class="navbar-capsule">
+            <ul class="navbar-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="buyer-dashboard.html">Orders</a></li>
+                <li><a href="farmer-dashboard.html" class="active">Sell</a></li>
+                <li><a href="crop-disease-detector.html">🔬 Disease Detector</a></li>
+            </ul>
+        </div>
+
         <div class="navbar-actions">
-            <span style="font-size:14px; color:var(--text-muted);">🌾 Ramesh Kumar</span>
-            <a href="login.html" class="btn btn-outline btn-sm" onclick="logout()">Sign Out</a>
+            <a href="cart.html" style="text-decoration:none; margin-right:15px;">🛒 <span
+                    class="cart-count">0</span></a>
+            <a href="login.html" class="btn btn-outline btn-sm" id="nav-login-btn">Login</a>
         </div>
     </nav>
 

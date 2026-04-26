@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Disease Detector — KisanBazaar</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/crop-disease.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>" />
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+    <nav class="navbar">
+        <div class="navbar-brand-group">
+            <div class="navbar-location">Nashik / Maharashtra</div>
+            <a href="../index.html" class="navbar-brand">🌿 KisanBazaar</a>
+        </div>
+
+        <div class="navbar-capsule">
+            <ul class="navbar-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="buyer-dashboard.html">Orders</a></li>
+                <li><a href="farmer-dashboard.html">Sell</a></li>
+                <li><a href="crop-disease-detector.html" class="nav-active">🔬 Disease Detector</a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-actions">
+            <a href="cart.html" style="text-decoration:none; margin-right:15px;">🛒 <span
+                    class="cart-count">0</span></a>
+            <a href="login.html" class="btn btn-outline btn-sm" id="nav-login-btn">Login</a>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <div class="cdd-hero">
+        <div class="cdd-hero-grid"></div>
+        <div class="cdd-hero-card">
+            <div class="cdd-badge">🔬 AI-Powered · 50+ Diseases · Instant Results</div>
+            <h1>Diagnose Your <em>Crop Disease</em><br />Instantly</h1>
+            <p>Upload a photo, select your crop, pick visible symptoms — get a full diagnosis, treatment plan &amp;
+                prevention guide in seconds.</p>
+            <div class="cdd-pills">
+                <span class="cdd-pill">🆓 Completely Free</span>
+                <span class="cdd-pill">🔒 No Login Needed</span>
+                <span class="cdd-pill">⚡ Instant Results</span>
+                <span class="cdd-pill">🌾 50+ Diseases Covered</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <div class="cdd-wrap">
+
+        <!-- UPLOAD CARD -->
+        <div class="cdd-card" id="cdd-up-card">
+
+            <!-- STEP 1 -->
+            <div class="cdd-ch">
+                <div class="cdd-ch-icon">📷</div>
+                <div>
+                    <div class="cdd-ch-title">Step 1 — Upload Crop Photo (Optional)</div>
+                    <div class="cdd-ch-sub">Helps give visual context — not required to diagnose</div>
+                </div>
+            </div>
+            <div class="cdd-uzone" id="cdd-uzone">
+                <input type="file" accept="image/*" id="cdd-finput" onchange="cddHandleFile(this)" />
+                <span class="cdd-uz-icon">🌿</span>
+                <h3>Drop your crop photo here</h3>
+                <p>or click to browse your gallery</p>
+                <div class="cdd-fmts">
+                    <span class="cdd-fmt">JPG</span><span class="cdd-fmt">PNG</span><span
+                        class="cdd-fmt">WEBP</span><span class="cdd-fmt">HEIC</span>
+                </div>
+            </div>
+            <div class="cdd-prev" id="cdd-prev">
+                <img id="cdd-prev-img" src="" alt="Preview" />
+                <div class="cdd-prev-acts">
+                    <button class="cdd-prev-btn" onclick="cddClearImg()">✕ Remove</button>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="cdd-crop-wrap">
+                <span class="cdd-crop-label">Step 2 — Select Your Crop *</span>
+                <div class="cdd-crop-btns">
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'tomato')">🍅 Tomato</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'potato')">🥔 Potato</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'wheat')">🌾 Wheat</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'rice')">🌾 Rice</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'maize')">🌽 Maize</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'cotton')">🪻 Cotton</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'grape')">🍇 Grape</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'mango')">🥭 Mango</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'onion')">🧅 Onion</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'chilli')">🌶️ Chilli</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'apple')">🍎 Apple</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'banana')">🍌 Banana</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'bean')">🫘 Bean</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'cabbage')">🥬 Cabbage</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'carrot')">🥕 Carrot</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'cauliflower')">🥦 Cauliflower</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'cucumber')">🥒 Cucumber</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'eggplant')">🍆 Eggplant</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'groundnut')">🥜 Groundnut</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'lettuce')">🥗 Lettuce</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'pear')">🍐 Pear</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'pepper')">🫑 Pepper</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'soybean')">🫛 Soybean</button>
+                    <button class="cdd-crop-btn" onclick="cddSelCrop(this,'strawberry')">🍓 Strawberry</button>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="cdd-sym-wrap" id="cdd-sym-wrap">
+                <span class="cdd-sym-label">Step 3 — Select Visible Symptoms * (pick all that match)</span>
+                <div class="cdd-sym-grid" id="cdd-sym-grid"></div>
+            </div>
+
+            <button class="cdd-btn-go" id="cdd-go-btn" disabled onclick="cddDiagnose()">
+                <span>🔬</span> Diagnose My Crop
+            </button>
+        </div>
+
+        <!-- LOADING -->
+        <div class="cdd-loading" id="cdd-loading">
+            <div class="cdd-rings">
+                <div class="cdd-ring"></div>
+                <div class="cdd-ring"></div>
+                <div class="cdd-ring"></div>
+                <div class="cdd-ring-leaf">🌿</div>
+            </div>
+            <h3>Analyzing Crop...</h3>
+            <p>Matching symptoms to disease database</p>
+            <div class="cdd-load-track">
+                <div class="cdd-load-fill"></div>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="cdd-results" id="cdd-results"></div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">🌿 KisanBazaar</div>
+                <p style="font-size:14px;line-height:1.7;max-width:280px;margin-bottom:16px;">Connecting India's farmers
+                    directly with consumers. Fair prices, fresh produce, zero middlemen.</p>
+            </div>
+            <div>
+                <h5>For Buyers</h5>
+                <ul>
+                    <li><a href="../products.html">Browse Products</a></li>
+                    <li><a href="cart.html">My Cart</a></li>
+                    <li><a href="order-tracking.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>For Farmers</h5>
+                <ul>
+                    <li><a href="farmer-register.html">Join Now</a></li>
+                    <li><a href="farmer-dashboard.html">Dashboard</a></li>
+                    <li><a href="add-product.html">Add Product</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>Tools</h5>
+                <ul>
+                    <li><a href="crop-disease-detector.html">Disease Detector</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copy">© 2025 KisanBazaar — Made with 💚 for Indian Farmers</div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="crop-disease.js"></script>
+</body>
+
+</html>

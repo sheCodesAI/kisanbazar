@@ -176,6 +176,7 @@ app.patch('/api/orders/:id', checkAuth, checkRole('farmer'), async (req, res) =>
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
+
 // ── Static Files & SPA Fallback ────────
 app.use(express.static(path.join(__dirname)));
 

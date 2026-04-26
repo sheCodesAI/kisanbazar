@@ -20,14 +20,19 @@
             <ul class="navbar-nav">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="pages/buyer-dashboard.html">Orders</a></li>
                 <li><a href="pages/farmer-dashboard.html">Sell</a></li>
-                <li><a href="pages/login.html" id="nav-login-btn">Login</a></li>
+                <li><a href="pages/crop-disease-detector.html">🔬 Disease Detector</a></li>
             </ul>
-            <div class="nav-socials">
-                <a href="pages/cart.html" style="text-decoration:none;">🛒 <span class="cart-count">0</span></a>
-            </div>
+        </div>
+
+        <div class="navbar-actions">
+            <a href="pages/cart.html" style="text-decoration:none; margin-right:15px;">🛒 <span
+                    class="cart-count">0</span></a>
+            <a href="pages/login.html" class="btn btn-outline btn-sm" id="nav-login-btn">Login</a>
         </div>
     </nav>
+
 
     <!-- Filter bar -->
     <div
@@ -76,11 +81,11 @@
                   overflow: hidden;
                   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
                 ">
-                    <div>
+                    <div
+                        style="background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px 24px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.5); display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
                             <span style="font-size: 20px;">🔥</span>
-                            <h3
-                                style="font-size: 28px; font-weight: 900; color: #000; margin: 0; text-shadow: 0 2px 4px rgba(255,255,255,0.8);">
+                            <h3 style="font-size: 28px; font-weight: 900; color: #000; margin: 0;">
                                 Popular This Week</h3>
                         </div>
                         <p style="font-size: 16px; color: #333; margin: 0; font-weight: 600;">Fresh finds that others
@@ -117,6 +122,13 @@
     <script src="js/cart.js"></script>
     <script>
         let ALL_PRODUCTS = [];
+        const HANDPICKED_POPULAR = [
+            { name: 'Fresh Farm Vegetables', price: 120, unit: 'kg', rating: 4.9, img: 'images/products/category_vegetables_group_1773586101942.png', farmer: 'Green Valley Farm' },
+            { name: 'Alphonso Mangoes', price: 450, unit: 'doz', rating: 5.0, img: 'images/products/product_alphonso_mangoes_ratnagiri_1773582079231.png', farmer: 'Ratnagiri Orchards' },
+            { name: 'Organic Wheat Flour', price: 65, unit: 'kg', rating: 4.8, img: 'images/products/product_wheat_flour_1773581556516.png', farmer: 'Punjab Grains' },
+            { name: 'Pure Farm Milk', price: 60, unit: 'L', rating: 4.9, img: 'images/products/milk.png', farmer: 'Dairy Fresh' },
+            { name: 'Fresh Organic Ginger', price: 80, unit: 'kg', rating: 4.7, img: 'images/products/ginger.png', farmer: 'Himalayan Roots' }
+        ];
 
         async function initProducts() {
             try {
@@ -133,12 +145,8 @@
             if (!container) return;
             container.innerHTML = '';
 
-            // Get top 6 products by rating
-            const popular = [...ALL_PRODUCTS]
-                .sort((a, b) => b.rating - a.rating)
-                .slice(0, 6);
-
-            popular.forEach(p => {
+            // Use handpicked products as requested
+            HANDPICKED_POPULAR.forEach(p => {
                 const enc = encodeURIComponent(p.name);
                 container.insertAdjacentHTML('beforeend', `
                     <div class="card product-card" style="min-width: 200px; max-width: 200px; flex: 0 0 auto;">
